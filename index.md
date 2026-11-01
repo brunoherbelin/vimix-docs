@@ -4,7 +4,7 @@ title: vimix documentation
 ---
 
 Community documentation for [vimix](https://github.com/brunoherbelin/vimix).
-Want to add a page? Read [how to contribute](https://github.com/brunoherbelin/vimix-docs/blob/master/CONTRIBUTING.md).
+Want to add a page? Read [how to contribute](https://github.com/brunoherbelin/vimix-docs/blob/main/CONTRIBUTING.md).
 
 {% assign docs = site.pages | where_exp: "p", "p.path contains 'pages/'" | sort: "title" %}
 {% for p in docs %}

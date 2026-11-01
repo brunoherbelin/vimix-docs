@@ -1,0 +1,32 @@
+---
+---
+@import "{{ site.theme }}";
+
+// Fluid layout: the theme fixes the page at 860 px with a 500 px content column.
+@media screen and (min-width: 961px) {
+  .wrapper {
+    width: auto;
+    max-width: 1400px;
+  }
+
+  section {
+    width: calc(100% - 330px);
+  }
+}
+
+// Page title and metadata shown in the left column
+header .page-info {
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 1px solid #e5e5e5;
+
+  h2 {
+    margin: 0 0 10px;
+    font-size: 22px;
+    line-height: 1.2;
+  }
+
+  p {
+    margin-bottom: 10px;
+  }
+}
