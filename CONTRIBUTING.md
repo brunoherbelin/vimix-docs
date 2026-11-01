@@ -38,7 +38,7 @@ Then the three sections:
 
 Rules (checked automatically on pull requests):
 
-- PNG only, at most 1600 px wide and 300 KB per file (compress with `oxipng` or `pngquant`, or https://squoosh.app).
+- PNG only. Do not worry about size: after merge, screenshots wider than 1600 px or heavier than 300 KB are resized and compressed automatically (you can run `python3 scripts/optimize_images.py` yourself, it needs Pillow).
 - File name: `<feature-name>-NN.png`, numbered in order of appearance.
 - Always write an alt text: `![Click the + button to add a source](img/feature-01.png)`.
 - Keep the default vimix theme so images stay consistent.

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Validate documentation pages: front matter, image references, alt texts, image size.
+"""Validate documentation pages: front matter, image references, alt texts, image size (oversized images only warn: they are optimized after merge).
 
 Usage: python3 scripts/check_pages.py   (run from the repository root)
 """
@@ -10,8 +10,10 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 REQUIRED = ("title", "summary", "author", "vimix_version", "date")
-MAX_BYTES = 300 * 1024
+MAX_BYTES = 300 * 1024  # soft limits: larger images are resized by scripts/optimize_images.py
 MAX_WIDTH = 1600
+HARD_MAX_BYTES = 10 * 1024 * 1024  # hard limits: rejected
+HARD_MAX_WIDTH = 5000
 IMAGE_RE = re.compile(r"!\[(?P<alt>[^\]]*)\]\((?P<src>[^)\s]+)\)")
 
 
@@ -58,31 +60,40 @@ def check_page(page):
 
 
 def check_image(img):
-    errors = []
+    """Return (errors, warnings) for one image."""
+    errors, warnings = [], []
     if img.suffix.lower() != ".png":
-        errors.append(f"{img}: only PNG images are accepted")
-        return errors
-    if img.stat().st_size > MAX_BYTES:
-        errors.append(f"{img}: {img.stat().st_size // 1024} KB exceeds {MAX_BYTES // 1024} KB")
+        return [f"{img}: only PNG images are accepted"], warnings
+    size = img.stat().st_size
     width = png_width(img)
     if width is None:
-        errors.append(f"{img}: not a valid PNG file")
+        return [f"{img}: not a valid PNG file"], warnings
+    if size > HARD_MAX_BYTES:
+        errors.append(f"{img}: {size // 1024} KB exceeds {HARD_MAX_BYTES // 1024} KB")
+    elif size > MAX_BYTES:
+        warnings.append(f"{img}: {size // 1024} KB exceeds {MAX_BYTES // 1024} KB (will be optimized after merge)")
+    if width > HARD_MAX_WIDTH:
+        errors.append(f"{img}: width {width} px exceeds {HARD_MAX_WIDTH} px")
     elif width > MAX_WIDTH:
-        errors.append(f"{img}: width {width} px exceeds {MAX_WIDTH} px")
-    return errors
+        warnings.append(f"{img}: width {width} px exceeds {MAX_WIDTH} px (will be resized after merge)")
+    return errors, warnings
 
 
 def main():
-    errors = []
+    errors, warnings = [], []
     pages = sorted((ROOT / "pages").rglob("index.md"))
     for page in pages:
         errors += check_page(page)
     for img in sorted((ROOT / "pages").rglob("img/*")):
         if img.is_file() and img.name != ".gitkeep":
-            errors += check_image(img)
+            e, w = check_image(img)
+            errors += e
+            warnings += w
+    for w in warnings:
+        print("WARNING", w)
     for e in errors:
         print("ERROR", e)
-    print(f"{len(pages)} page(s) checked, {len(errors)} error(s)")
+    print(f"{len(pages)} page(s) checked, {len(errors)} error(s), {len(warnings)} warning(s)")
     return 1 if errors else 0
 
 
