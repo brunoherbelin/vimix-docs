@@ -15,6 +15,9 @@ MAX_WIDTH = 1600
 HARD_MAX_BYTES = 10 * 1024 * 1024  # hard limits: rejected
 HARD_MAX_WIDTH = 5000
 IMAGE_RE = re.compile(r"!\[(?P<alt>[^\]]*)\]\((?P<src>[^)\s]+)\)")
+FENCE_RE = re.compile(r"^\s*(`{3,}|~{3,})")
+INLINE_CODE_RE = re.compile(r"(`+).+?\1", re.S)
+COMMENT_RE = re.compile(r"<!--.*?-->", re.S)
 
 
 def front_matter(text):
@@ -27,6 +30,22 @@ def front_matter(text):
         if sep:
             meta[key.strip()] = value.strip().strip('"')
     return meta
+
+
+def strip_code(text):
+    """Remove fenced code blocks, inline code and HTML comments: they are examples, not content."""
+    lines, fence = [], None
+    for line in text.splitlines():
+        m = FENCE_RE.match(line)
+        if fence is None:
+            if m:
+                fence = m.group(1)
+            else:
+                lines.append(line)
+        elif m and m.group(1)[0] == fence[0] and len(m.group(1)) >= len(fence):
+            fence = None
+    text = INLINE_CODE_RE.sub("", "\n".join(lines))
+    return COMMENT_RE.sub("", text)
 
 
 def png_width(path):
@@ -48,10 +67,11 @@ def check_page(page):
             errors.append(f"{page}: front matter '{key}' is missing or empty")
     if meta.get("date") and not re.fullmatch(r"\d{4}-\d{2}-\d{2}", meta["date"]):
         errors.append(f"{page}: 'date' must be YYYY-MM-DD")
+    content = strip_code(text)
     for heading in ("## What it does", "## How to", "## Specific information"):
-        if heading not in text:
+        if heading not in content:
             errors.append(f"{page}: missing section '{heading}'")
-    for m in IMAGE_RE.finditer(text):
+    for m in IMAGE_RE.finditer(content):
         if not m.group("alt").strip():
             errors.append(f"{page}: image {m.group('src')} has no alt text")
         if not m.group("src").startswith("http") and not (page.parent / m.group("src")).is_file():
