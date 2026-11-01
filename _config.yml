@@ -1,0 +1,14 @@
+theme: jekyll-theme-minimal
+title: vimix documentation
+description: Community documentation of the video live mixer
+exclude:
+  - scripts
+  - CONTRIBUTING.md
+  - README.md
+  - LICENSE
+  - .github
+defaults:
+  - scope:
+      path: "pages"
+    values:
+      layout: default

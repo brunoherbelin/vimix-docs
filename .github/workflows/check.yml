@@ -1,0 +1,23 @@
+name: Check documentation
+
+on:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Front matter, sections, images
+        run: python3 scripts/check_pages.py
+      - name: Markdown lint
+        uses: DavidAnson/markdownlint-cli2-action@v16
+        with:
+          globs: "pages/**/*.md"
+          config: ".markdownlint.yml"
+      - name: Links
+        uses: lycheeverse/lychee-action@v2
+        with:
+          args: --no-progress --offline --include-fragments "pages/**/*.md"
+          fail: true
