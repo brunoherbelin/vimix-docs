@@ -1,6 +1,7 @@
 theme: jekyll-theme-minimal
 title: vimix documentation
-description: Community documentation of the video live mixer
+description: Community documentation of [vimix](https://brunoherbelin.github.io/vimix/), the video live mixer
+logo: /assets/img/vimix_256x256.png
 exclude:
   - scripts
   - CONTRIBUTING.md

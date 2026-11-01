@@ -30,3 +30,76 @@ header .page-info {
     margin-bottom: 10px;
   }
 }
+
+// Dark theme (screen only, printing keeps the theme's light colors).
+// #454545 matches the background of the vimix interface in screenshots.
+$bg: #454545;
+$text: #fff;
+$muted: #d0d0d0;
+$line: #6b6b6b;
+$blue: #7cc4ec;       // titles and links (5:1 contrast on $bg)
+$blue-hover: #a8dbf5;
+
+@media screen {
+  body {
+    background-color: $bg;
+    color: $text;
+  }
+
+  h1, h2, h3, h4, h5, h6,
+  header h1 a {
+    color: $blue;
+  }
+
+  strong, dt, th {
+    color: $text;
+  }
+
+  a {
+    color: $blue;
+  }
+
+  a:hover, a:focus {
+    color: $blue-hover;
+  }
+
+  small, a small, a:hover small {
+    color: $muted;
+  }
+
+  blockquote {
+    border-left-color: $line;
+  }
+
+  code, pre {
+    color: #f0f0f0;
+  }
+
+  pre {
+    background: #383838;
+    border-color: $line;
+  }
+
+  th, td, hr {
+    border-color: $line;
+  }
+
+  hr {
+    background: $line;
+  }
+
+  kbd {
+    background-color: #383838;
+    border-color: $line;
+    border-bottom-color: #8a8a8a;
+    color: $text;
+  }
+
+  header .page-info {
+    border-top-color: $line;
+  }
+
+  section {
+    border-color: $line;
+  }
+}

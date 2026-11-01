@@ -21,7 +21,7 @@
           <img src="{{site.logo | relative_url}}" alt="Logo" />
         {% endif %}
 
-        <p>{{ site.description | default: site.github.project_tagline }}</p>
+        <p>{{ site.description | default: site.github.project_tagline | markdownify | remove: "<p>" | remove: "</p>" }}</p>
 
         {% if page.url != "/" and page.title %}
         <div class="page-info">
