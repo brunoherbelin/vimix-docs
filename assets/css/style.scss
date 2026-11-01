@@ -37,6 +37,7 @@ $bg: #232323;
 $text: #fff;
 $muted: #d0d0d0;
 $line: #6b6b6b;
+$code-bg: #2b2b2b;   // code blocks: darker than the page
 $blue: #7cc4ec;       // titles and links (5:1 contrast on $bg)
 $blue-hover: #a8dbf5;
 
@@ -75,9 +76,36 @@ $blue-hover: #a8dbf5;
     color: #f0f0f0;
   }
 
+  // Fenced blocks are wrapped by Rouge in div.highlight > pre.highlight, which the
+  // theme paints #f8f8f8 with a class selector: match it with classes too.
+  .highlight,
+  pre,
+  pre.highlight {
+    background: $code-bg;
+    color: #f0f0f0;
+  }
+
   pre {
-    background: #383838;
     border-color: $line;
+  }
+
+  // Syntax highlighting colors, adapted to the dark background.
+  .highlight span[class] {
+    color: inherit;
+    background-color: transparent;
+  }
+
+  .highlight span {
+    &.c, &.cd, &.cm, &.c1, &.cs, &.cp, &.cpf { color: #a0a8b0; }                  // comments
+    &.k, &.kc, &.kd, &.kn, &.kp, &.kr, &.kt, &.o, &.ow { color: $blue; }          // keywords, operators
+    &.s, &.sa, &.sb, &.sc, &.dl, &.sd, &.s2, &.se, &.sh, &.si, &.sx, &.sr,
+    &.s1, &.ss { color: #f4b183; }                                                // strings
+    &.m, &.mb, &.mf, &.mh, &.mi, &.il, &.mo { color: #b5e08a; }                   // numbers
+    &.na, &.nt, &.nb, &.bp { color: $blue; }                                      // attributes, tags, builtins
+    &.nf, &.nc, &.nn, &.no, &.nl, &.ni, &.ne, &.nd, &.py { color: #ffd479; }      // functions, classes
+    &.err, &.gr, &.gd { color: #ff9a9a; }                                         // errors, deletions
+    &.gi { color: #a6e3a1; }                                                      // insertions
+    &.gh, &.gu, &.gs { color: $blue; }                                            // headings
   }
 
   th, td, hr {
