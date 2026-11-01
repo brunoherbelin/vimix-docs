@@ -12,15 +12,34 @@ Load a video file, place it in mixing view to adjust its opacity, show it in the
 
 ## How to
 
-1. Describe the first user action.
+1. Clic on `+` in left panel to add a source.
 
-   ![Alt text describing the screenshot](img/vimix-screenshot.png)
+   ![clic on plus](img/load-video-1.png)
 
-2. Describe the second user action.
+2. Clic `Open` .
 
-   ![Alt text describing the screenshot](img/feature-name-02.png)
+   ![clic open](img/load-video-2.png)
+
+3. Select a video file in the file selection dialogue, validate with `Open` .
+
+   ![select file](img/load-video-3.png)
+
+4. Drag the video icon in the mixing circle.
+
+   ![drag video in mixing](img/load-video-4.png)
+
+5. Clic Media icon on the source top-right corner to open the media Player.
+
+   In the Media player, you can press Play/Pause, seek forward, 
+   
+   ![open player](img/load-video-5.png)
+   
+7. Your video is in the mix output; open the Mix window with menu `Tools`/`Mix`.
+
+   ![open mix output](img/load-video-6.png)
 
 ## Specific information
 
-- Shortcuts, limitations, platform differences.
-- Related pages.
+- [Ctrl+P] to opens the media Player.
+- [Ctrl+M] to open the Mix output
+- You can also drop the video file from your desktop environment.
