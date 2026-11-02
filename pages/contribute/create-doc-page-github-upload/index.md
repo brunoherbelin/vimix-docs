@@ -47,7 +47,9 @@ The process requires that you have a [github account](https://github.com/signup)
   
  => Drag the folder `getting-started/` (= the category) into the github `vimix-docs/pages`. Fill the commit information (Tile and description).
 
-5. Confirm to `Create a pull request` 
+5. Create a pull request
+
+  After your files are committed, go to `Pull requests` in the github menu bar (next to `<> Code`) and clic on `Create pull request`.
 
   ![For the repository on github](img/create-doc-github-5.png)
 
