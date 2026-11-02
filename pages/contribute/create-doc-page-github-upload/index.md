@@ -49,7 +49,7 @@ The process requires that you have a [github account](https://github.com/signup)
 
 5. Create a pull request
 
-  After your files are committed, go to `Pull requests` in the github menu bar (next to `<> Code`) and clic on `Create pull request`.
+  After your files are committed, go to `Pull requests` in the github menu bar (next to `<> Code`) and clic on `New pull request`.
 
   ![For the repository on github](img/create-doc-github-5.png)
 
