@@ -36,14 +36,14 @@ The process requires that you have a [github account](https://github.com/signup)
 
    Example; for a documentation on __"how to create a camera source"__ for the __"getting started"__ category, you would prepare the following folders and files; 
 
-```
-getting-started/
-| --- create-camera-source/
-|      | --- index.md
-|      | --- img/
-|             | --- screenshot-1.png
-|             | --- screenshot-2.png
-```
+   ```
+   getting-started/
+   | --- create-camera-source/
+   |      | --- index.md
+   |      | --- img/
+   |             | --- screenshot-1.png
+   |             | --- screenshot-2.png
+   ```
   
    => Drag the folder `getting-started/` (= the category) into the github `vimix-docs/pages`. Fill the commit information (Tile and description).
 

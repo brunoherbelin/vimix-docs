@@ -10,7 +10,7 @@ date: 2026-11-01
 
 Prepare a page for the [Community documentation of vimix](https://brunoherbelin.github.io/vimix-docs) with screenshots and a Markdown index file.
 
-The files are then ready to be proposed to the [vimix-docs](https://github.com/brunoherbelin/vimix-docs) repository following the [contribution instructions](https://github.com/brunoherbelin/vimix-docs/blob/main/CONTRIBUTING.md).
+The files are then ready to be proposed to the [vimix-docs](https://github.com/brunoherbelin/vimix-docs) repository following these [instructions](https://brunoherbelin.github.io/vimix-docs/pages/contribute/create-doc-page-github-upload/).
 
 ## How to
 
@@ -84,5 +84,6 @@ Two to four sentences explaining the feature and when to use it.
 
 ## Specific information
 
+- Read the [contribution instructions](https://github.com/brunoherbelin/vimix-docs/blob/main/CONTRIBUTING.md).
 - When saving a screenshot, vimix also saves a description of the annotation (`.xml`); you can keep and re-use these files. They can be deleted when you don't need them anymore.
 - The screenshot filenames are given with their relative path to the `img/` folder ; e.g., as in `![screenshot](img/vimix-screenshot-2.png)`.
