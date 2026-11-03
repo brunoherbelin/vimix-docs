@@ -18,7 +18,6 @@ Two to four sentences explaining the feature and when to use it.
 
 2. Describe the second user action.
 
-   ![Alt text describing the screenshot](img/feature-name-02.png)
 
 ## Specific information
 
