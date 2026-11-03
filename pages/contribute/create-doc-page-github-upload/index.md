@@ -51,6 +51,8 @@ The process requires that you have a [github account](https://github.com/signup)
 
   After your files are committed, go to `Pull requests` in the github menu bar (next to `<> Code`) and clic on `New pull request`.
 
+  The system localizes the changes and new files that you added; you can now confirm and `Create pull request`;
+
   ![For the repository on github](img/create-doc-github-5.png)
 
 6. The pull request is being analysed and checked
